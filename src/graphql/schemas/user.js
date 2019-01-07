@@ -11,14 +11,14 @@ gql`
     chats: [Chat!]!
   }
   extend type Query {
-    getUser(id: ID!): User!
-    getAllUsers:[User!]!
-    checkUser: User
+    getUser(id: ID!): User! @auth
+    getAllUsers:[User!]! @auth
+    checkUser: User @auth
   }
   extend type Mutation {
-    signUp(name: String!, username: String!, email: String!, password: String!): User!
-    signIn(email: String!, password: String!): User
-    signOut: Boolean!
+    signUp(name: String!, username: String!, email: String!, password: String!): User! @guest
+    signIn(email: String!, password: String!): User @guest
+    signOut: Boolean! @auth
   }
 `
 
