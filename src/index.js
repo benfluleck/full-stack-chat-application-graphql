@@ -8,6 +8,7 @@ import { mergeTypes } from 'merge-graphql-schemas';
 import dotenv from 'dotenv';
 
 import { typeDefs, resolvers } from './graphql';
+import schemaDirectives from './directives'
 
 
 (async () => {
@@ -18,7 +19,7 @@ import { typeDefs, resolvers } from './graphql';
     const inProduction = process.env.NODE_ENV === 'production'
     const port = 4000 || process.env.PORT
     const SESS_LIFETIME = 60 * 60 * 1000 * 2;
-    const schema = makeExecutableSchema({ typeDefs: mergeTypes(typeDefs, { all: true }), resolvers })
+    const schema = makeExecutableSchema({ typeDefs: mergeTypes(typeDefs, { all: true }), schemaDirectives, resolvers })
 
     await mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}${process.env.DB_DATABASE}/${process.env.DB_NAME}`,
       {
@@ -43,7 +44,7 @@ import { typeDefs, resolvers } from './graphql';
       rolling: true,
       saveUninitialized: false,
       cookie: {
-        maxAge: SESS_LIFETIME,
+        maxAge: parseInt(SESS_LIFETIME),
         sameSite: true,
         secure: inProduction
       }
@@ -53,7 +54,6 @@ import { typeDefs, resolvers } from './graphql';
 
     const server = new ApolloServer({
       schema,
-      cors: false,
       playground: inProduction ? false : {
         settings:{
           'request.credentials': 'include'
@@ -62,7 +62,7 @@ import { typeDefs, resolvers } from './graphql';
       context: ({ req, res }) => ({ req, res })
     })
 
-    await server.applyMiddleware({ app })
+    await server.applyMiddleware({ app, cors: false })
 
     app.listen({ port }, () => {
       console.log(`Server started http://localhost:${port}${server.graphqlPath}`)
