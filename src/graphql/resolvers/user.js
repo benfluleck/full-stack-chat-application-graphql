@@ -11,7 +11,7 @@ import { attemptSignIn, userSignOut } from '../../middleware/checkAuth';
 const userResolver = {
   Query: {
     checkUser: (root, args, { req }, info) => {
-    
+
       return db.Users.findById(req.session.userId)
 
     },
@@ -22,7 +22,7 @@ const userResolver = {
     getUser: (root, { id }, context, info) => {
 
       if (!mongoose.Types.ObjectId.isValid(id)) {
-        throw new UserInputError(`${id} is not a valid id`)
+        throw new UserInputError('This user id is not a valid id')
       }
       db.Users.findById(id)
     }

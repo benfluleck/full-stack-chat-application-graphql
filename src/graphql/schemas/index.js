@@ -1,5 +1,5 @@
 
-const { gql } = require('apollo-server-express')
+import { gql } from 'apollo-server-express';
 
 import chatSchema from './chat';
 import messageSchema from './message';

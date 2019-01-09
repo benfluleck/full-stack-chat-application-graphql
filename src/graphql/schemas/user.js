@@ -1,4 +1,4 @@
-import gql  from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 const userSchema =
 gql`
@@ -9,6 +9,7 @@ gql`
     email: String!
     avatarUrl: String
     chats: [Chat!]!
+    updatedAt: String!
   }
   extend type Query {
     getUser(id: ID!): User! @auth
