@@ -4,7 +4,7 @@ import Joi from 'joi'
 import { UserInputError } from 'apollo-server-express'
 import db from '../../models'
 import { signUp, signIn } from '../../validationSchemas';
-import * as Auth from '../../middleware/checkSession';
+
 import { attemptSignIn, userSignOut } from '../../middleware/checkAuth';
 
 

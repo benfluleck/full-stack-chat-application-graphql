@@ -1,6 +1,10 @@
 import { gql } from 'apollo-server-express';
 
-const chatSchema = gql`
+export default gql`
+  extend type Mutation {
+    startChat(title: String, userIds: [ID!]!): Chat @auth
+  }
+
   type Chat {
     id: ID!
     title: String
@@ -12,4 +16,4 @@ const chatSchema = gql`
   }
 `
 
-export default chatSchema;
+
