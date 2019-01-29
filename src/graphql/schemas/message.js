@@ -1,11 +1,14 @@
-import gql from 'graphql-tag';
+import { gql } from 'apollo-server-express';
 
 const messageSchema =
 gql`
   type Message {
     id: ID!
     body: String!
-    user: User!
+    sender: User!
+    chat: Chat!
+    createdAt: String!
+    updatedAt: String!
   }
 `
 export default messageSchema;

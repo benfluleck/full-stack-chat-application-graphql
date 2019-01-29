@@ -1,16 +1,25 @@
 import mongoose, { model } from 'mongoose';
 const { Schema } = mongoose
 
-export default model('Chat', new Schema({
-  name: String,
-  users: {
-    type: [Schema.Types.ObjectId],
+const { ObjectId } = Schema.Types;
+
+const chatSchema = model('Chat', new Schema({
+  title: String,
+  users: [{
+    type: ObjectId,
     ref: 'User'
+  }],
+  lastMessage: {
+    type: [ObjectId],
+    ref: 'Message'
   },
   messages: {
-    type: [Schema.Types.ObjectId],
+    type: [ObjectId],
     ref: 'Message'
   }
 }, {
     timestamps: true
   }))
+
+
+export default chatSchema;

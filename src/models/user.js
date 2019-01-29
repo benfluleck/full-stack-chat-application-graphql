@@ -3,6 +3,8 @@ import { hash, compare } from 'bcrypt'
 
 const { Schema } = mongoose
 
+const { ObjectId } = Schema.Types;
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -13,7 +15,7 @@ const userSchema = new Schema({
     required: true,
     validate: {
       validator: async email => await User.doesntExist({ email }),
-      message: ({ value }) => `Email ${value} has already been taken`
+      message: () => `Email  has already been taken`
     },
   },
   password: {
@@ -24,14 +26,14 @@ const userSchema = new Schema({
     type: String,
     validate: {
       validator: username => User.doesntExist({ username }),
-      message: ({ value }) => `Username ${value} has already been taken.` 
+      message: () => `Username has already been taken.`
     },
   },
   avatarUrl: String,
-  chats: {
-    type: [Schema.Types.ObjectId],
+  chats: [{
+    type: ObjectId,
     ref: 'Chat'
-  }
+  }]
 }, {
     timestamps: true
   })
