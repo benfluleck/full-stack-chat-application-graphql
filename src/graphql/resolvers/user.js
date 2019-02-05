@@ -1,10 +1,8 @@
 import mongoose from 'mongoose'
 import Joi from 'joi'
 
-import { UserInputError } from 'apollo-server-express'
 import db from '../../models'
-import { signUp, signIn } from '../../validationSchemas';
-
+import { signUp, signIn, objectId } from '../../validationSchemas';
 import { attemptSignIn, userSignOut } from '../../middleware/checkAuth';
 
 
@@ -19,11 +17,8 @@ const userResolver = {
 
       return db.Users.find({})
     },
-    getUser: (root, { id }, context, info) => {
-
-      if (!mongoose.Types.ObjectId.isValid(id)) {
-        throw new UserInputError('This user id is not a valid id')
-      }
+    getUser: async (root, args, context, info) => {
+      await Joi.validate(args, objectId)
       db.Users.findById(id)
     }
   },
@@ -46,10 +41,13 @@ const userResolver = {
     },
     signOut: async (root, args, { req, res }, info) => {
       return userSignOut(req, res)
-
-    }
+    },
   },
-
+  User: {
+    chats: async (user, args, context, info) => {
+     return (await user.populate('chats').execPopulate()).chats
+    }
+  }
 }
 
 export default userResolver;
