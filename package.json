@@ -14,16 +14,16 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-watch": "^2.0.7",
+    "babel-watch": "^7.0.0",
     "express": "^4.16.4",
-    "graphql": "^0.13.2",
-    "graphql-tools": "^3.1.1"
+    "graphql": "^14.2.1",
+    "graphql-tools": "^4.0.4"
   },
   "dependencies": {
     "apollo-server-express": "^2.3.1",
     "bcrypt": "^3.0.3",
     "connect-redis": "^3.4.0",
-    "dotenv": "^6.2.0",
+    "dotenv": "^7.0.0",
     "express-session": "^1.15.6",
     "graphql-tag": "^2.10.0",
     "joi": "^14.3.1",
