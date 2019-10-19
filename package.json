@@ -29,6 +29,6 @@
     "joi": "^14.3.1",
     "lodash.merge": "^4.6.2",
     "merge-graphql-schemas": "^1.5.8",
-    "mongoose": "^5.4.2"
+    "mongoose": "^5.4.10"
   }
 }
