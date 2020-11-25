@@ -32,7 +32,7 @@
     "lodash.merge": "^4.6.2",
     "merge-graphql-schemas": "^1.5.8",
     "mongoose": "^5.7.5",
-    "snyk": "^1.316.1"
+    "snyk": "^1.425.4"
   },
   "snyk": true
 }
