@@ -24,15 +24,15 @@
   "dependencies": {
     "apollo-server-express": "^2.3.1",
     "bcrypt": "^5.0.0",
-    "connect-redis": "^3.4.0",
+    "connect-redis": "^4.0.0",
     "dotenv": "^6.2.0",
     "express-session": "^1.15.6",
     "graphql-tag": "^2.10.0",
     "joi": "^14.3.1",
     "lodash.merge": "^4.6.2",
     "merge-graphql-schemas": "^1.5.8",
-    "mongoose": "^5.7.5",
-    "snyk": "^1.316.1"
+    "mongoose": "^5.12.3",
+    "snyk": "^1.518.0"
   },
   "snyk": true
 }
